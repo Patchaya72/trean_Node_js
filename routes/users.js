@@ -100,10 +100,6 @@ router.put("/users/:id/approve",verified, async function (req, res, next) {
     if(req.user.role !== 'admin'){
       return sendResponse(res, 403, "Access denied. Admins only.");
     }
-    // Basic validation
-    if (typeof userStatus !== 'boolean') {
-      return sendResponse(res, 400, "Invalid status value");
-    }
     // Find user by ID
     let user = await User.findById(userId);
     if (!user) {
